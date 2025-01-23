@@ -22,8 +22,9 @@ def run_script(script_name):
 if __name__ == "__main__":
     # Список всех скриптов, которые нужно запустить
     scripts = [
+        "start_timer.py",        # Начало рабочего дня
         "get_tasks.py",          # Получение задач
-        "send_message.py"         # Отправка сообщений
+        "send_message.py",       # Отправка сообщений
     ]
 
     # Поочередный запуск всех скриптов

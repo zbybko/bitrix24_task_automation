@@ -1,6 +1,6 @@
 import requests
 import json
-from loader import WEBHOOK_URL, BITRIX_DOMAIN
+from loader import BITRIX24_TASKS_URL, BITRIX24_DOMAIN
 
 
 def get_task_links():
@@ -11,7 +11,7 @@ def get_task_links():
         "select[]": ["ID", "TITLE", "RESPONSIBLE_ID"],  # Поля, которые мы хотим получить
     }
 
-    response = requests.get(WEBHOOK_URL, params=params)
+    response = requests.get(BITRIX24_TASKS_URL, params=params)
 
     if response.status_code == 200:
         try:
@@ -19,7 +19,7 @@ def get_task_links():
             if "result" in data and "tasks" in data["result"]:
                 tasks = data["result"]["tasks"]
                 links = [
-                    f"{BITRIX_DOMAIN}/company/personal/user/{task['responsibleId']}/tasks/task/view/{task['id']}/"
+                    f"https://{BITRIX24_DOMAIN}/company/personal/user/{task['responsibleId']}/tasks/task/view/{task['id']}/"
                     for task in tasks
                 ]
                 # Сохранение задач в файл
